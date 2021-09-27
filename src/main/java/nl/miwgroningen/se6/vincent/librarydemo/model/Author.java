@@ -2,10 +2,8 @@ package nl.miwgroningen.se6.vincent.librarydemo.model;
 
 import org.springframework.lang.NonNull;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Vincent Velthuizen <v.r.velthuizen@pl.hanze.nl>
@@ -25,6 +23,9 @@ public class Author {
     private String infixName;
     @Column(unique = true)
     private String lastName;
+
+    @OneToMany(mappedBy = "author")
+    private List<Book> booksWritten;
 
     public String getDisplayName() {
         return firstName + " " + (infixName.isBlank() ? "" : infixName + " ") + lastName;
@@ -60,5 +61,9 @@ public class Author {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Book> getBooksWritten() {
+        return booksWritten;
     }
 }

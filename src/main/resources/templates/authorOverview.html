@@ -15,7 +15,7 @@
     </tr>
     <tr th:each="author : ${allAuthors}">
         <td th:text="${author.authorId}"></td>
-        <td th:text="${author.displayName}"></td>
+        <td><a th:href="@{/authors/detail/{authorId}(authorId=${author.authorId})}" th:text="${author.displayName}"></a> </td>
     </tr>
 </table>
 

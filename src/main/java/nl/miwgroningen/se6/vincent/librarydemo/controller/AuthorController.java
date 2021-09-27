@@ -7,7 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Optional;
 
 /**
  * @author Vincent Velthuizen <v.r.velthuizen@pl.hanze.nl>
@@ -29,6 +32,16 @@ public class AuthorController {
         model.addAttribute("allAuthors", authorRepository.findAll());
         model.addAttribute("newAuthor", new Author());
         return "authorOverview";
+    }
+
+    @GetMapping("/authors/detail/{authorId}")
+    protected String showAuthorDetails(@PathVariable("authorId") Integer authorId, Model model) {
+        Optional<Author> author = authorRepository.findById(authorId);
+        if (author.isPresent()) {
+            model.addAttribute("author", author.get());
+            return "authorDetails";
+        }
+        return "redirect:/authors";
     }
 
     @PostMapping("/authors/new")
