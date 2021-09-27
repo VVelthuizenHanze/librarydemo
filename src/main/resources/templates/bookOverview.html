@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Overzicht van alle boeken</title>
+</head>
+<body>
+<h1>Overzicht van alle boeken</h1>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Auteur</th>
+    </tr>
+    <tr th:each="book : ${allBooks}">
+        <td th:text="${book.bookId}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+    </tr>
+</table>
+
+<p>
+    <a th:href="@{/books/new}">Voeg een nieuwe boek toe</a>
+</p>
+
+</body>
+</html>
