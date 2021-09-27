@@ -14,13 +14,17 @@
         </tr>
         <tr>
             <td>Author</td>
-            <td><input type="text" th:field="*{author}"></td>
+            <td>
+                <select th:field="*{author}">
+                    <option th:each="author : ${allAuthors}" th:value="${author.authorId}" th:text="${author.displayName}"></option>
+                </select>
+            </td>
         </tr>
     </table>
     <input type="submit" value="Sla boek op">
 </form>
 <p>
-    <a th:href="@{/books}">Laat maar</a>
+    <a th:href="@{/books}">Boeken overzicht</a>
 </p>
 </body>
 </html>

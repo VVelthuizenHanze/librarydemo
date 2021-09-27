@@ -1,13 +1,11 @@
 package nl.miwgroningen.se6.vincent.librarydemo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author Vincent Velthuizen <v.r.velthuizen@pl.hanze.nl>
  *
- * Dit zijn boeken waarvan de bibliotheek exemplaren heeft of kan bemachtigen, om vervolgens uit te lenen
+ * Books of which the library can get copies
  */
 
 @Entity
@@ -17,9 +15,11 @@ public class Book {
     @GeneratedValue
     private Integer bookId;
 
+    @Column(unique = true)
     private String title;
 
-    private String author;
+    @ManyToOne
+    private Author author;
 
     public Integer getBookId() {
         return bookId;
@@ -37,11 +37,11 @@ public class Book {
         this.title = title;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 }
