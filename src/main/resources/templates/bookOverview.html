@@ -16,7 +16,7 @@
             <th>Add Copy</th>
         </tr>
         <tr th:each="book : ${allBooks}">
-            <td th:text="${book.title}"></td>
+            <td><a th:href="@{/books/details/{bookTitle}(bookTitle=${book.title})}" th:text="${book.title}"></a> </td>
             <td th:text="${book.author.displayName}"></td>
             <td><span th:text="${book.numberOfAvailableCopies}"></span></td>
             <td><a th:href="@{/copies/new/{bookId}(bookId=${book.bookId})}">Add</a></td>
