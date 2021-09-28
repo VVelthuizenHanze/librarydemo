@@ -1,6 +1,7 @@
 package nl.miwgroningen.se6.vincent.librarydemo.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Vincent Velthuizen <v.r.velthuizen@pl.hanze.nl>
@@ -20,6 +21,17 @@ public class Book {
 
     @ManyToOne
     private Author author;
+
+    @OneToMany(mappedBy = "book")
+    private List<Copy> copies;
+
+    public int getNumberOfAvailableCopies(){
+        int count = 0;
+        for (Copy copy : copies) {
+            count += copy.getAvailable() ? 1 : 0;
+        }
+        return count;
+    }
 
     public Integer getBookId() {
         return bookId;

@@ -8,15 +8,15 @@
 <h1>Overzicht van alle boeken</h1>
 <table>
     <tr>
-        <th>Id</th>
         <th>Title</th>
         <th>Auteur</th>
+        <th>Beschikbaar</th>
         <th>Add Copy</th>
     </tr>
     <tr th:each="book : ${allBooks}">
-        <td th:text="${book.bookId}"></td>
         <td th:text="${book.title}"></td>
         <td th:text="${book.author.displayName}"></td>
+        <td><span th:text="${book.numberOfAvailableCopies}"></span></td>
         <td><a th:href="@{/copies/new/{bookId}(bookId=${book.bookId})}">Add</a></td>
     </tr>
 </table>
