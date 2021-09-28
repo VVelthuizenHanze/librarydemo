@@ -11,11 +11,13 @@
         <th>Id</th>
         <th>Title</th>
         <th>Auteur</th>
+        <th>Add Copy</th>
     </tr>
     <tr th:each="book : ${allBooks}">
         <td th:text="${book.bookId}"></td>
         <td th:text="${book.title}"></td>
         <td th:text="${book.author.displayName}"></td>
+        <td><a th:href="@{/copies/new/{bookId}(bookId=${book.bookId})}">Add</a></td>
     </tr>
 </table>
 
